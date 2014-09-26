@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="PracticeAndTest">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../eclipse-jee-indigo-SR2-win32-x86_64"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+    </path>
+    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/annotations-api.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/catalina-ant.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/catalina-ha.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/catalina-tribes.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/catalina.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/ecj-4.2.1.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/el-api.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/jasper-el.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/jasper.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/jsp-api.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/servlet-api.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/tomcat-api.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../lib4j/apache-tomcat-7.0.34/lib/tomcat-util.jar"/>
+    </path>
+    <path id="PracticeAndTest.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
+        <pathelement location="lib/tomcat-api.jar"/>
+        <pathelement location="lib/commons-lang3-3.2.1.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="test"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="ActionExam">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.actiontype.ActionExam" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="AsciiCompareTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.types.AsciiCompareTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="AtomicTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.concurrent.AtomicTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="AtomicTest.testUsingAtomicLong">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.concurrent.AtomicTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="AtomicTest.testUsingSynchronized">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.concurrent.AtomicTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="AtomicTest.testUsingVolatile">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.concurrent.AtomicTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="ClassGetNameTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.name.ClassGetNameTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="ExecTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.examples.exec.ExecTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="FileCompareTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.file.FileCompareTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="HexToDecTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.types.HexToDecTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="InsertSpecialCharacterToStringTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.string.InsertSpecialCharacterToStringTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="LocalhostTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.net.LocalhostTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="PassingListTest (1)">
+        <java classname="dev.foursix.test.types.PassingListTest" failonerror="true" fork="yes">
+            <classpath refid="PracticeAndTest.classpath"/>
+        </java>
+    </target>
+    <target name="PassingListTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.types.PassingListTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="PracMain">
+        <java classname="PracMain" failonerror="true" fork="yes">
+            <classpath refid="PracticeAndTest.classpath"/>
+        </java>
+    </target>
+    <target name="StringRefTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.string.StringRefTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="SubListTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.list.SubListTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="SubListTest.testIncrementOprInaminus">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.list.SubListTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="TrimAndSplitTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="dev.foursix.test.string.TrimAndSplitTest" todir="${junit.output.dir}"/>
+            <classpath refid="PracticeAndTest.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build" name="PracticeAndTest">
+	<get 
+		src="http://docs.tobesoft.com/developer_guide_nexacro_14_ko.pdf" 
+		dest="doc.pdf" 
+		verbose="true" 
+		usetimestamp="true"
+		username="server"
+		password="0701"
+		 />
+</project>
