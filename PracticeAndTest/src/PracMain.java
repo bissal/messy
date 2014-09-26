@@ -1,4 +1,4 @@
-import dev.foursix.test.queue.QueueTest;
+import io.github.bissal.messy.test.queue.QueueTest;
 
 
 public class PracMain {
